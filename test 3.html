@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>mosaique sympa</title>
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			height: 100vh;
+			background-color: #222;
+		}
+		#background {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+		}
+		.triangle {
+			position: absolute;
+			width: 0;
+			height: 0;
+			border-style: solid;
+			border-width: 0 0 100px 100px;
+			border-color: transparent transparent #03A9F4 transparent;
+			transition: transform 1s ease;
+		}
+		.color1 {
+			border-color: transparent transparent #359bca transparent;
+		}
+		.color2 {
+			border-color: transparent transparent #271357 transparent;
+		}
+		.color3 {
+			border-color: transparent transparent #19be1e transparent;
+		}
+		.color4 {
+			border-color: transparent transparent #d11a9a transparent;
+		}
+	</style>
+</head>
+<body>
+	<div id="background"></div>
+
+	<script>
+		// plein de triangles
+		const background = document.getElementById('background');
+		const triangleSize = 100;
+		const screenWidth = window.innerWidth;
+		const screenHeight = window.innerHeight;
+		const rows = Math.ceil(screenHeight / triangleSize);
+		const columns = Math.ceil(screenWidth / triangleSize);
+
+		for (let i = 0; i < rows; i++) {
+			for (let j = 0; j < columns; j++) {
+				const triangle = document.createElement('div');
+				triangle.classList.add('triangle', `color${Math.ceil(Math.random() * 4)}`);
+				triangle.style.left = j * triangleSize + 'px';
+				triangle.style.top = i * triangleSize + 'px';
+				background.appendChild(triangle);
+			}
+		}
+
+		// clique pr animer
+		background.addEventListener('click', () => {
+			const triangles = document.querySelectorAll('.triangle');
+			triangles.forEach(triangle => {
+				const randomX = Math.ceil(Math.random() * 2) * (Math.random() < 0.5 ? -1 : 1);
+				const randomY = Math.ceil(Math.random() * 2) * (Math.random() < 0.5 ? -1 : 1);
+				triangle.style.transform = `translate(${randomX * triangleSize}px, ${randomY * triangleSize}px)`;
+			});
+		});
+	</script>
+</body>
+</html>

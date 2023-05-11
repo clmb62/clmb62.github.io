@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>arc en ciel en detente</title>
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			background-color: black;
+		}
+
+		.rainbow {
+			height: 100vh;
+			position: relative;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.rainbow:before {
+			content: '';
+			height: 150%;
+			width: 150%;
+			border-radius: 50%;
+			position: absolute;
+			top: -25%;
+			left: -25%;
+			background-image: radial-gradient(circle, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8b00ff);
+			background-size: 800% 800%;
+			animation: rainbow 20s linear infinite;
+		}
+
+		@keyframes rainbow {
+			from {
+				background-position: 0% 50%;
+			}
+			to {
+				background-position: 100% 50%;
+			}
+		}
+
+		.grain {
+			position: absolute;
+			height: 100%;
+			width: 100%;
+			background: url("https://www.transparenttextures.com/patterns/45-degree-fabric-dark.png") repeat center center;
+			opacity: 0.2;
+			animation: grain 10s linear infinite;
+		}
+
+		@keyframes grain {
+			from {
+				transform: translate3d(0, 0, 0);
+			}
+			to {
+				transform: translate3d(-100px, -100px, 0);
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="rainbow">
+		<div class="grain"></div>
+	</div>
+</body>
+</html>
+
